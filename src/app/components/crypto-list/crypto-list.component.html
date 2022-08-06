@@ -1,0 +1,19 @@
+<h1 class="text-4xl antialiased font-sans text-center mb-8 mt-8 text-amber-700 drop-shadow-xl">Crypto Tracker</h1>
+<div id="container">
+    <h2 class="text-white mb-3 text-lg">Search your favourite Crypto!</h2>
+    <input id="search" placeholder="Enter the token's name or initials">
+    <!-- simbol+coin price variation -->
+    <div class="table mt-16 w-11/12 rounded-sm m-auto shadow-2xl" id="coinList">
+        <tr class="bg-amber-700">
+            <td>Coin</td>
+            <td>Name</td>
+            <td>Price</td>
+            <td>24h Variation</td>
+        </tr>
+        <tr *ngFor="let coin of coins" class="text-gray-400 hover:bg-gray-700 cursor-pointer">
+            <td>{{coin.initials}}</td>
+            <td>{{coin.name}}</td>
+            <td>{{coin.price}} $</td>
+            <td [ngClass]="{ 'text-green-500' : coin.variation > 0, 'text-red-500' : coin.variation < 0 }">{{coin.variation}} %</td>
+        </tr>
+    </div>

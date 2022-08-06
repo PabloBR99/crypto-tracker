@@ -1,0 +1,19 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* hola */
+
+html {
+    background-color: rgb(34, 34, 34);
+}
+
+.toolbar {
+    width: 80%;
+    height: 30px;
+    padding: 15px;
+    background-color: rgb(175, 85, 0);
+}
