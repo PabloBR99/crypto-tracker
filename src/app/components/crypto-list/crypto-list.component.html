@@ -1,19 +1,85 @@
-<h1 class="text-4xl antialiased font-sans text-center mb-8 mt-8 text-amber-700 drop-shadow-xl">Crypto Tracker</h1>
+<!-- TITLE -->
+<div style="width: 100%; margin: auto">
+    <h1 class="text-4xl antialiased font-sans font-semibold text-center mb-8 mt-14 mx-auto text-amber-700 drop-shadow-xl">
+        <fa-icon [icon]="faChartLine"></fa-icon>
+        Crypto Tracker
+    </h1>
+</div>
+
 <div id="container">
-    <h2 class="text-white mb-3 text-lg">Search your favourite Crypto!</h2>
-    <input id="search" placeholder="Enter the token's name or initials">
-    <!-- simbol+coin price variation -->
-    <div class="table mt-16 w-11/12 rounded-sm m-auto shadow-2xl" id="coinList">
+    <h2 class="text-gray-200 mb-3 text-md">
+        <fa-icon [icon]="faMagnifyingGlass" class="text-white"></fa-icon> Search your favourite Crypto!
+    </h2>
+    <!-- SEARCH BAR -->
+    <input [(ngModel)]="searchCoinText" id="search" placeholder="Enter the token's name or symbol" class="px-4 py-2 w-11/12" (keyup.enter)="search()">
+    <!-- NO RESULTS -->
+    <div *ngIf="notFound" class="text-amber-700 text-left mt-8 w-60 mx-auto">Sorry, No results found :(</div>
+    <!-- SEARCHING ANIMATION -->
+    <div *ngIf="isSearching" class="lds-facebook block mx-auto">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <!-- SEARCHED COINS TABLE -->
+    <div *ngIf="searched" class="table mt-8 w-11/12 rounded-md overflow-hidden mx-auto shadow-2xl" id="coinList" style="max-width: 100%;">
         <tr class="bg-amber-700">
-            <td>Coin</td>
+            <td>Rank</td>
+            <td>Symbol</td>
             <td>Name</td>
-            <td>Price</td>
-            <td>24h Variation</td>
         </tr>
-        <tr *ngFor="let coin of coins" class="text-gray-400 hover:bg-gray-700 cursor-pointer">
-            <td>{{coin.initials}}</td>
+        <tr *ngFor="let coin of searchedCoins" class="text-gray-300 hover:bg-gray-700 cursor-pointer max-h-2">
+            <!-- RANK -->
+            <td [ngClass]="{ 'glow-1 text-amber-300 subpixel-antialiased' : coin.market_cap_rank == 1, 'glow-2 text-stone-400 brightness-95 subpixel-antialiased' : coin.market_cap_rank == 2,  'glow-3 text-amber-600 subpixel-antialiased' : coin.market_cap_rank == 3}">
+                {{coin.market_cap_rank}}º</td>
+            <!-- SYMBOL + LOGO  -->
+            <td>
+                <div style="width: 140px; margin-left: auto; margin-right: 180px; text-align: left"><img src="{{coin.large}}" width="30px" class="inline mr-2"> {{coin.symbol | uppercase}}</div>
+            </td>
+            <!-- NAME -->
             <td>{{coin.name}}</td>
-            <td>{{coin.price}} $</td>
-            <td [ngClass]="{ 'text-green-500' : coin.variation > 0, 'text-red-500' : coin.variation < 0 }">{{coin.variation}} %</td>
         </tr>
     </div>
+    <!-- TABLE HEADERS -->
+    <div class="text-amber-600 mt-20 text-md text-left w-11/12 m-auto relative">
+        <fa-icon [icon]="faRankingStar"></fa-icon> Top 100
+        <!-- SEARCH TOP 100 -->
+        <input type="text" [(ngModel)]="searchText" class="bg-transparent outline-0 border border-amber-600 ml-4 px-1 py-1 text-md placeholder-amber-700 border-t-0 border-r-0 border-l-0" placeholder="Search:">
+        <!-- REFRESH BUTTON -->
+        <button (click)="refresh()">
+            <fa-icon [icon]="faArrowsRotate"
+                class="absolute bottom-0 right-0 hover:text-amber-400 cursor-pointer active:text-amber-100"></fa-icon>
+        </button>
+    </div>
+    <!-- TABLE -->
+    <div *ngIf="!isLoading" class="table mt-6 w-11/12 rounded-md overflow-hidden mx-auto shadow-2xl" id="coinList" style="max-width: 100%;">
+        <tr class="bg-amber-700">
+            <td>Rank</td>
+            <td>Symbol</td>
+            <td>Name</td>
+            <td>Price</td>
+            <td>Market Cap</td>
+            <td style="min-width: 123px">24h Variation</td>
+        </tr>
+        <tr *ngFor="let coin of coins | coinsFilter: searchText; let i=index" class="text-gray-300 hover:bg-gray-700 cursor-pointer max-h-2">
+            <!-- RANK -->
+            <td [ngClass]="{ 'glow-1 text-amber-300 subpixel-antialiased' : coin.market_cap_rank == 1, 'glow-2 text-stone-400 brightness-95 subpixel-antialiased' : coin.market_cap_rank == 2,  'glow-3 text-amber-600 subpixel-antialiased' : coin.market_cap_rank == 3}">
+                {{coin.market_cap_rank}}º</td>
+            <!-- SYMBOL + LOGO  -->
+            <td>
+                <div style="width: 99px; margin-left: auto; margin-right: auto; text-align: left"><img src="{{coin.image}}" width="30px" class="inline mr-2"> {{coin.symbol | uppercase}}</div>
+            </td>
+            <!-- NAME -->
+            <td>{{coin.name}}</td>
+            <!-- PRICE -->
+            <td style="min-width: 110px">{{coin.current_price | number : '1.2-7'}} $</td>
+            <!-- MARKET CAP -->
+            <td style="min-width: 171px">{{coin.market_cap | number}} $</td>
+            <!-- 24H VARIATION -->
+            <td [ngClass]=" { 'text-green-500' : coin.price_change_percentage_24h_in_currency> 0, 'text-red-500' : coin.price_change_percentage_24h_in_currency
+                < 0 } ">
+                {{coin.price_change_percentage_24h_in_currency | number : '1.2-2'}} %</td>
+        </tr>
+    </div>
+    <!-- Loading animation -->
+    <div *ngIf="isLoading" class="lds-dual-ring mt-16"></div>
+</div>

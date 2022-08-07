@@ -1,7 +1,10 @@
 export interface Coin {
-    imageUrl?: string,
-    initials: string,
+    id: string,
+    image?: string,
+    symbol: string,
     name: string,
-    price: number,
-    variation: number 
+    current_price: number,
+    market_cap: number,
+    price_change_percentage_24h_in_currency: number,
+    market_cap_rank: number
 }
