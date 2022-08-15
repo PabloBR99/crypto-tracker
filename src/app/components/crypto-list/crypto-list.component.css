@@ -22,12 +22,16 @@ td {
     padding: 10px;
 }
 
+.ordenado {
+    background-color: white;
+}
+
 .glow-1 {
     /* color: rgb(255, 208, 0); */
     text-align: center;
-    -webkit-animation: glow-1 2s ease-in-out infinite alternate;
-    -moz-animation: glow-1 2s ease-in-out infinite alternate;
-    animation: glow-1 2s ease-in-out infinite alternate;
+    -webkit-animation: glow-1 4s ease-in-out infinite alternate;
+    -moz-animation: glow-1 4s ease-in-out infinite alternate;
+    animation: glow-1 4s ease-in-out infinite alternate;
 }
 
 @keyframes glow-1 {
@@ -42,14 +46,14 @@ td {
 .glow-2 {
     /* color: rgb(255, 208, 0); */
     text-align: center;
-    -webkit-animation: glow-2 2s ease-in-out infinite alternate;
-    -moz-animation: glow-2 2s ease-in-out infinite alternate;
-    animation: glow-2 2s ease-in-out infinite alternate;
+    -webkit-animation: glow-2 4s ease-in-out infinite alternate;
+    -moz-animation: glow-2 4s ease-in-out infinite alternate;
+    animation: glow-2 4s ease-in-out infinite alternate;
 }
 
 @keyframes glow-2 {
     from {
-        text-shadow: 0 0 0px #fff, 0 0 0.01px rgb(255, 255, 255), 0 0 0.03px #929292, 0 0 0.04px #727272, 0 0 0.1px #858585, 0 0 0.3px #636363, 0 0 0.6px #747474;
+        text-shadow: 0 0 0px #fff, 0 0 0.01px rgb(168, 168, 168), 0 0 0.03px #929292, 0 0 0.04px #727272, 0 0 0.1px #858585, 0 0 0.3px #636363, 0 0 0.6px #747474;
     }
     to {
         text-shadow: 0 0 0.5px #fff, 0 0 1px #c0c0c0, 0 0 1.5px #b6b6b6, 0 0 2px #979797, 0 0 3px #949494, 0 0 4px #7e7e7d, 0 0 5px #a3a3a1;
@@ -59,14 +63,14 @@ td {
 .glow-3 {
     /* color: rgb(255, 208, 0); */
     text-align: center;
-    -webkit-animation: glow-3 2s ease-in-out infinite alternate;
-    -moz-animation: glow-3 2s ease-in-out infinite alternate;
-    animation: glow-3 2s ease-in-out infinite alternate;
+    -webkit-animation: glow-3 4s ease-in-out infinite alternate;
+    -moz-animation: glow-3 4s ease-in-out infinite alternate;
+    animation: glow-3 4s ease-in-out infinite alternate;
 }
 
 @keyframes glow-3 {
     from {
-        text-shadow: 0 0 0px rgb(252, 183, 151), 0 0 0.01px rgb(252, 146, 85), 0 0 0.03px #e68a00, 0 0 0.04px #e68200, 0 0 0.1px #e69d00, 0 0 0.3px #e68200, 0 0 0.6px #e68a00;
+        /* text-shadow: 0 0 0px rgb(252, 183, 151), 0 0 0.01px rgb(252, 146, 85), 0 0 0.03px #e68a00, 0 0 0.04px #e68200, 0 0 0.1px #e69d00, 0 0 0.3px #e68200, 0 0 0.6px #e68a00; */
     }
     to {
         text-shadow: 0 0 0.1px rgb(252, 181, 116), 0 0 0.5px #fda036, 0 0 1.2px #fd9432, 0 0 1.3px #ffa237, 0 0 2px #fa893e, 0 0 3px #fc922e, 0 0 4px #ffb01d;
@@ -74,7 +78,7 @@ td {
 }
 
 
-/* loading */
+/* refreshing */
 
 .lds-dual-ring {
     display: inline-block;
@@ -89,9 +93,9 @@ td {
     height: 64px;
     margin: 8px;
     border-radius: 50%;
-    border: 6px solid #fff;
-    border-color: #fff transparent #fff transparent;
-    animation: lds-dual-ring 1.2s linear infinite;
+    border: 6px solid rgb(204, 93, 19);
+    border-color: rgb(204, 93, 19) transparent rgb(204, 93, 19) transparent;
+    animation: lds-dual-ring 1.4s linear infinite;
 }
 
 @keyframes lds-dual-ring {
@@ -118,8 +122,8 @@ td {
     position: absolute;
     left: 8px;
     width: 16px;
-    background: rgb(175, 70, 0);
-    animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+    background: rgb(190, 87, 18);
+    animation: lds-facebook 1.4s cubic-bezier(0, 0.5, 0.5, 1) infinite;
 }
 
 .lds-facebook div:nth-child(1) {

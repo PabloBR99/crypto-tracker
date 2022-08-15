@@ -1,0 +1,17 @@
+<h1 class="text-center text-amber-700 text-3xl mt-8 mb-16 drop-shadow-xl shadow-black font-sans font-semibold">{{crypto.name + ' (' + crypto.symbol.toUpperCase() + ')'}}</h1>
+<div class="w-11/12 mx-auto grid grid-cols-2 px-6">
+    <div class="w-9/12 text-gray-400 mt-20 ml-2">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam elementum scelerisque lacus vitae interdum. Nunc porta erat quis metus tempus, sit amet tempus ligula scelerisque. Donec mi purus, tempor eu commodo eu, dapibus sed ex. Maecenas interdum felis
+        id nibh viverra, suscipit pretium risus elementum. Nunc id felis aliquam, faucibus dui non, maximus libero. Fusce congue lectus id lobortis convallis. Phasellus maximus porta tempor. Nam volutpat nunc arcu. Pellentesque sit amet consectetur diam.
+        Nunc ut purus ipsum. Integer luctus dictum facilisis. Donec porta odio id ligula accumsan aliquam. Aliquam erat volutpat. Aliquam sodales egestas sem, in fermentum enim lacinia at. Aenean pellentesque luctus orci, vel blandit mi condimentum vitae.
+        Praesent mattis vulputate massa id egestas. Cras et vestibulum nisi. Vivamus accumsan risus a metus ullamcorper, eget condimentum quam porta. Duis ut tempor sapien. In vulputate interdum augue, et congue leo facilisis tincidunt. Donec tempus leo
+        eget interdum hendrerit.
+    </div>
+    <div class="text-center text-gray-300">Last 45 days:
+        <jqxChart style="max-width: 830px; width: 80%; height: 100%; margin-left: 5%;" [title]="''" [description]="''" [enableAnimations]="true" [showLegend]="false" [padding]="padding" [titlePadding]="titlePadding" [source]="sampleData" [xAxis]="xAxis" [valueAxis]="valueAxis"
+            [seriesGroups]="seriesGroups" [colorScheme]="'scheme03'" [backgroundColor]="backgroundColor" [borderLineColor]="borderLineColor" [showBorderLine]="false" [draggable]="false" [enableCrosshairs]="true">
+        </jqxChart>
+    </div>
+</div>
+
+<!-- FIX CURRENT PRICE SEARCHED COIN -->

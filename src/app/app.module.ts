@@ -8,12 +8,15 @@ import { HttpClientModule } from "@angular/common/http";
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule } from '@angular/forms';
 import { FilterPipe } from './pipes/filter.pipe';
+import { CryptoDetailsComponent } from './components/crypto-details/crypto-details.component';
+import { jqxChartModule } from 'jqwidgets-ng/jqxchart';
 
 @NgModule({
   declarations: [
     AppComponent,
     CryptoListComponent,
-    FilterPipe
+    FilterPipe,
+    CryptoDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -21,6 +24,7 @@ import { FilterPipe } from './pipes/filter.pipe';
     HttpClientModule,
     FontAwesomeModule,
     FormsModule,
+    jqxChartModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

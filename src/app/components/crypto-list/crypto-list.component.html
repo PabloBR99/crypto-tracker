@@ -1,77 +1,128 @@
 <!-- TITLE -->
 <div style="width: 100%; margin: auto">
-    <h1 class="text-4xl antialiased font-sans font-semibold text-center mb-8 mt-14 mx-auto text-amber-700 drop-shadow-xl">
+    <h1 class="text-5xl antialiased font-sans font-semibold text-center mb-8 mt-14 mx-auto text-amber-700 drop-shadow-xl">
         <fa-icon [icon]="faChartLine"></fa-icon>
-        Crypto Tracker
+        Crypto-Tracker
     </h1>
 </div>
 
-<div id="container">
-    <h2 class="text-gray-200 mb-3 text-md">
-        <fa-icon [icon]="faMagnifyingGlass" class="text-white"></fa-icon> Search your favourite Crypto!
+<div id="container" class="subpixel-antialiased select-none">
+    <h2 class="text-gray-300 mb-3 text-lg">
+        <fa-icon [icon]="faMagnifyingGlass" class="text-amber-600"></fa-icon> Search your favourite Crypto!
     </h2>
     <!-- SEARCH BAR -->
-    <input [(ngModel)]="searchCoinText" id="search" placeholder="Enter the token's name or symbol" class="px-4 py-2 w-11/12" (keyup.enter)="search()">
+    <input style="min-width: 440px; max-width: 600px;" [(ngModel)]="searchCoinText" id="search" placeholder="Enter the token's name or symbol" class="px-4 py-2 w-5/12" (keyup.enter)="search()">
     <!-- NO RESULTS -->
-    <div *ngIf="notFound" class="text-amber-700 text-left mt-8 w-60 mx-auto">Sorry, No results found :(</div>
+    <div *ngIf="notFound" class="text-amber-700 text-center mt-8 w-60 mx-auto">Sorry, No results found
+        <fa-icon [icon]="faFaceFrown"></fa-icon>
+    </div>
     <!-- SEARCHING ANIMATION -->
-    <div *ngIf="isSearching" class="lds-facebook block mx-auto">
-        <div></div>
-        <div></div>
-        <div></div>
+    <div class="scale-75">
+        <div *ngIf="isSearching" class="lds-facebook block mx-auto">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
     </div>
     <!-- SEARCHED COINS TABLE -->
-    <div *ngIf="searched" class="table mt-8 w-11/12 rounded-md overflow-hidden mx-auto shadow-2xl" id="coinList" style="max-width: 100%;">
-        <tr class="bg-amber-700">
-            <td>Rank</td>
-            <td>Symbol</td>
-            <td>Name</td>
+    <div *ngIf="searched" class="table w-5/12 mt-2 rounded-md overflow-hidden mx-auto shadow-2xl" id="coinList" style="max-width: 100%;">
+        <!-- SEARCHED COINS TABLE HEADERS -->
+        <tr *ngIf="searched" class="mt-5 text-md text-left mx-auto relative">
+            <th>
+                <!-- RESULTS -->
+                <div *ngIf="!notFound && searched" class="text-amber-700 text-left mt-8 pb-2 mx-auto">
+                    {{searchedCoins.length}} coins founded!
+                </div>
+            </th>
+            <th></th>
+            <th class="text-right">
+                <!-- REFRESH BUTTON -->
+                <button (click)="resetSearch()" class="mr-2 text-amber-700 hover:text-amber-500 cursor-pointer active:text-amber-100 font-thin">
+                    <fa-icon [icon]="faXmark">
+                    </fa-icon> Clear
+                </button>
+            </th>
         </tr>
-        <tr *ngFor="let coin of searchedCoins" class="text-gray-300 hover:bg-gray-700 cursor-pointer max-h-2">
-            <!-- RANK -->
-            <td [ngClass]="{ 'glow-1 text-amber-300 subpixel-antialiased' : coin.market_cap_rank == 1, 'glow-2 text-stone-400 brightness-95 subpixel-antialiased' : coin.market_cap_rank == 2,  'glow-3 text-amber-600 subpixel-antialiased' : coin.market_cap_rank == 3}">
-                {{coin.market_cap_rank}}º</td>
+        <tr class="bg-amber-700">
+            <td class="rounded-l-md rounded-b-none">Symbol</td>
+            <td>Name</td>
+            <td class="rounded-r-md rounded-b-none">Rank</td>
+        </tr>
+        <tr *ngFor="let coin of searchedCoins" class="text-gray-300 hover:bg-gray-700 cursor-pointer max-h-2" routerLink="/crypto-details" [state]="coin">
             <!-- SYMBOL + LOGO  -->
-            <td>
-                <div style="width: 140px; margin-left: auto; margin-right: 180px; text-align: left"><img src="{{coin.large}}" width="30px" class="inline mr-2"> {{coin.symbol | uppercase}}</div>
+            <td style="min-width: 200px; width: 210px; padding-inline: 0;">
+                <div style="text-align: left;">
+                    <div style="margin-left: 15px;"><img src="{{coin.large}}" width="30px" class="inline mr-1 ml-10"> {{coin.symbol | uppercase}}</div>
+                </div>
             </td>
             <!-- NAME -->
             <td>{{coin.name}}</td>
-        </tr>
-    </div>
-    <!-- TABLE HEADERS -->
-    <div class="text-amber-600 mt-20 text-md text-left w-11/12 m-auto relative">
-        <fa-icon [icon]="faRankingStar"></fa-icon> Top 100
-        <!-- SEARCH TOP 100 -->
-        <input type="text" [(ngModel)]="searchText" class="bg-transparent outline-0 border border-amber-600 ml-4 px-1 py-1 text-md placeholder-amber-700 border-t-0 border-r-0 border-l-0" placeholder="Search:">
-        <!-- REFRESH BUTTON -->
-        <button (click)="refresh()">
-            <fa-icon [icon]="faArrowsRotate"
-                class="absolute bottom-0 right-0 hover:text-amber-400 cursor-pointer active:text-amber-100"></fa-icon>
-        </button>
-    </div>
-    <!-- TABLE -->
-    <div *ngIf="!isLoading" class="table mt-6 w-11/12 rounded-md overflow-hidden mx-auto shadow-2xl" id="coinList" style="max-width: 100%;">
-        <tr class="bg-amber-700">
-            <td>Rank</td>
-            <td>Symbol</td>
-            <td>Name</td>
-            <td>Price</td>
-            <td>Market Cap</td>
-            <td style="min-width: 123px">24h Variation</td>
-        </tr>
-        <tr *ngFor="let coin of coins | coinsFilter: searchText; let i=index" class="text-gray-300 hover:bg-gray-700 cursor-pointer max-h-2">
             <!-- RANK -->
             <td [ngClass]="{ 'glow-1 text-amber-300 subpixel-antialiased' : coin.market_cap_rank == 1, 'glow-2 text-stone-400 brightness-95 subpixel-antialiased' : coin.market_cap_rank == 2,  'glow-3 text-amber-600 subpixel-antialiased' : coin.market_cap_rank == 3}">
+                <div *ngIf="coin.market_cap_rank>0">{{coin.market_cap_rank}}º</div>
+                <div *ngIf="!(coin.market_cap_rank>0)" class="text-gray-400">unknown</div>
+            </td>
+        </tr>
+    </div>
+    <!-- TABLE TOP 100 -->
+    <div *ngIf="!isLoading" class="table mt-14 rounded-md overflow-hidden mx-auto shadow-2xl">
+        <!-- FILTER AND REFRESH -->
+        <tr class="text-amber-600 text-md text-left m-auto relative">
+            <th class="pb-2 pl-2">
+                Top 100
+                <fa-icon [icon]="faRankingStar"></fa-icon>
+            </th>
+            <th class="pb-4">
+                <!-- FILTER TOP 100 -->
+                <input type="text" [(ngModel)]="searchText" class="bg-transparent outline-0 border border-amber-600 ml-4 px-1 py-1 text-xs font-thin placeholder-amber-700 border-t-0 border-r-0 border-l-0" placeholder="Filter:">
+            </th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th>
+                <!-- REFRESH BUTTON -->
+                <button (click)="refresh()">
+                    <fa-icon [icon]="faArrowsRotate"
+                        class="absolute bottom-3 right-1 hover:text-amber-400 cursor-pointer active:text-amber-100">
+                    </fa-icon>
+                </button>
+            </th>
+        </tr>
+        <!-- TABLE HEADERS -->
+        <tr class="bg-amber-700">
+            <td (click)="orderCoins(); colname='rank'" class="rounded-l-md rounded-b-none hover:bg-amber-600 cursor-pointer">Rank
+                <fa-icon [icon]="faSort" class="text-xs" [ngClass]="{'text-gray-300': colname.localeCompare('rank') == 0}"></fa-icon>
+            </td>
+            <td (click)="orderCoins(); colname='symbol'" class="hover:bg-amber-600 cursor-pointer">Symbol
+                <fa-icon [icon]="faSort" class="text-xs" [ngClass]="{'text-gray-300': colname.localeCompare('symbol') == 0}"></fa-icon>
+            </td>
+            <td (click)="orderCoins(); colname='name'" class="hover:bg-amber-600 cursor-pointer">Name
+                <fa-icon [icon]="faSort" class="text-xs" [ngClass]="{'text-gray-300': colname.localeCompare('name') == 0}"></fa-icon>
+            </td>
+            <td (click)="orderCoins(); colname='price'" class="hover:bg-amber-600 cursor-pointer">Price
+                <fa-icon [icon]="faSort" class="text-xs" [ngClass]="{'text-gray-300': colname.localeCompare('price') == 0}"></fa-icon>
+            </td>
+            <td (click)="orderCoins(); colname='market-cap'" class="hover:bg-amber-600 cursor-pointer">Market Cap
+                <fa-icon [icon]="faSort" class="text-xs" [ngClass]="{'text-gray-300': colname.localeCompare('market-cap') == 0}"></fa-icon>
+            </td>
+            <td (click)="orderCoins(); colname='variation'" class="rounded-r-md rounded-b-none hover:bg-amber-600 cursor-pointer focus:text-white" style="min-width: 123px; border-bottom-right-radius: 0px;">24h Variation
+                <fa-icon [icon]="faSort" class="text-xs" [ngClass]="{'text-gray-300': colname.localeCompare('variation') == 0}"></fa-icon>
+            </td>
+        </tr>
+        <tr *ngFor="let coin of coins | coinsFilter: searchText" class="text-gray-300 hover:bg-gray-700 cursor-pointer max-h-2" routerLink="/crypto-details" [state]="coin">
+            <!-- RANK -->
+            <td style="min-width: 84px;" [ngClass]="{ 'glow-1 text-amber-300 subpixel-antialiased' : coin.market_cap_rank == 1, 'glow-2 text-stone-400 brightness-95 subpixel-antialiased' : coin.market_cap_rank == 2,  'glow-3 text-amber-600 subpixel-antialiased' : coin.market_cap_rank == 3}">
                 {{coin.market_cap_rank}}º</td>
             <!-- SYMBOL + LOGO  -->
-            <td>
-                <div style="width: 99px; margin-left: auto; margin-right: auto; text-align: left"><img src="{{coin.image}}" width="30px" class="inline mr-2"> {{coin.symbol | uppercase}}</div>
+            <td style="min-width: 190px; padding-inline: 0;">
+                <div class="w-3/5 mx-auto text-center">
+                    <div class="text-left ml-4"><img src="{{coin.image}}" width="30px" class="inline mr-1"> {{coin.symbol | uppercase}}</div>
+                </div>
             </td>
             <!-- NAME -->
-            <td>{{coin.name}}</td>
+            <td style="min-width: 149px;">{{coin.name}}</td>
             <!-- PRICE -->
-            <td style="min-width: 110px">{{coin.current_price | number : '1.2-7'}} $</td>
+            <td style="min-width: 110px">{{coin.current_price | number : '1.2-8'}} $</td>
             <!-- MARKET CAP -->
             <td style="min-width: 171px">{{coin.market_cap | number}} $</td>
             <!-- 24H VARIATION -->
@@ -80,6 +131,8 @@
                 {{coin.price_change_percentage_24h_in_currency | number : '1.2-2'}} %</td>
         </tr>
     </div>
-    <!-- Loading animation -->
-    <div *ngIf="isLoading" class="lds-dual-ring mt-16"></div>
+</div>
+<!-- REFRESH ANIMATION -->
+<div class="w-2/3 mx-auto text-center">
+    <div *ngIf="isLoading" class="lds-dual-ring mt-12 "></div>
 </div>

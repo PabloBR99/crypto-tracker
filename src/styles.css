@@ -22,10 +22,3 @@ html {
 html::-webkit-scrollbar {
     display: none;
 }
-
-.toolbar {
-    width: 80%;
-    height: 30px;
-    padding: 15px;
-    background-color: rgb(175, 85, 0);
-}
