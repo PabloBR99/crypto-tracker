@@ -1,7 +1,7 @@
 <!-- TITLE -->
 <div style="width: 100%; margin: auto">
-    <h1 class="text-5xl antialiased font-sans font-semibold text-center mb-8 mt-14 mx-auto text-amber-700 drop-shadow-xl">
-        <fa-icon [icon]="faChartLine"></fa-icon>
+    <h1 class="text-5xl antialiased font-sans font-semibold text-center mb-8 mt-14 mx-auto text-amber-700 drop-shadow-xl hover:animate-pulse cursor-default">
+        <fa-icon [icon]="faChartLine" class="animate-bounce"></fa-icon>
         Crypto-Tracker
     </h1>
 </div>
@@ -11,7 +11,7 @@
         <fa-icon [icon]="faMagnifyingGlass" class="text-amber-600"></fa-icon> Search your favourite Crypto!
     </h2>
     <!-- SEARCH BAR -->
-    <input style="min-width: 440px; max-width: 600px;" [(ngModel)]="searchCoinText" id="search" placeholder="Enter the token's name or symbol" class="px-4 py-2 w-5/12" (keyup.enter)="search()">
+    <input style="min-width: 440px; max-width: 600px;" [(ngModel)]="searchCoinText" id="search" placeholder="Enter the token's name or symbol" class="px-4 py-2 w-6/12" (keyup.enter)="search()">
     <!-- NO RESULTS -->
     <div *ngIf="notFound" class="text-amber-700 text-center mt-8 w-60 mx-auto">Sorry, No results found
         <fa-icon [icon]="faFaceFrown"></fa-icon>
@@ -122,7 +122,7 @@
             <!-- NAME -->
             <td style="min-width: 149px;">{{coin.name}}</td>
             <!-- PRICE -->
-            <td style="min-width: 110px">{{coin.current_price | number : '1.2-8'}} $</td>
+            <td style="min-width: 110px">{{coin.current_price | number : '1.2-9'}} $</td>
             <!-- MARKET CAP -->
             <td style="min-width: 171px">{{coin.market_cap | number}} $</td>
             <!-- 24H VARIATION -->

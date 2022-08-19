@@ -1,16 +1,69 @@
-<h1 class="text-center text-amber-700 text-3xl mt-8 mb-16 drop-shadow-xl shadow-black font-sans font-semibold">{{crypto.name + ' (' + crypto.symbol.toUpperCase() + ')'}}</h1>
-<div class="w-11/12 mx-auto grid grid-cols-2 px-6">
-    <div class="w-9/12 text-gray-400 mt-20 ml-2">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam elementum scelerisque lacus vitae interdum. Nunc porta erat quis metus tempus, sit amet tempus ligula scelerisque. Donec mi purus, tempor eu commodo eu, dapibus sed ex. Maecenas interdum felis
-        id nibh viverra, suscipit pretium risus elementum. Nunc id felis aliquam, faucibus dui non, maximus libero. Fusce congue lectus id lobortis convallis. Phasellus maximus porta tempor. Nam volutpat nunc arcu. Pellentesque sit amet consectetur diam.
-        Nunc ut purus ipsum. Integer luctus dictum facilisis. Donec porta odio id ligula accumsan aliquam. Aliquam erat volutpat. Aliquam sodales egestas sem, in fermentum enim lacinia at. Aenean pellentesque luctus orci, vel blandit mi condimentum vitae.
-        Praesent mattis vulputate massa id egestas. Cras et vestibulum nisi. Vivamus accumsan risus a metus ullamcorper, eget condimentum quam porta. Duis ut tempor sapien. In vulputate interdum augue, et congue leo facilisis tincidunt. Donec tempus leo
-        eget interdum hendrerit.
+<div class="mx-auto flex mb-16 mt-10 mr-28 w-12/12" style="justify-content: center; align-items: center; min-width: 400px;">
+    <a href="{{homepage}}" target=”_blank” class=" text-right ml-32 hover:animate-spin active:animate-none">
+        <img style="width: 60px; " src="{{largeImg}} " alt=" ">
+    </a>
+    <a href="{{homepage}}" target=”_blank” style="">
+        <h1 class="text-amber-600 text-4xl ml-2 drop-shadow-xl shadow-black font-sans font-semibold pr-4 cursor-pointer w-fit mr-0 active:text-amber-300 hover:text-amber-500 duration-700 ">
+            {{crypto.name + ' (' + crypto.symbol.toUpperCase() + ')'}}</h1>
+    </a>
+</div>
+<div class="w-10/12 mx-auto grid grid-cols-2" style="min-height: 400px;">
+    <div class="text-amber-600 font-semibold text-left text-xl mt-5 ml-10" style="max-width: 741px;">
+        <div>Rank: <label [ngClass]=" { 'glow-1 text-amber-300 subpixel-antialiased' : crypto.market_cap_rank==1 , 'glow-2 text-stone-400 brightness-95 subpixel-antialiased' : crypto.market_cap_rank==2 , 'glow-3 text-amber-600 subpixel-antialiased'
+    : crypto.market_cap_rank==3, 'text-gray-200 font-normal' : crypto.market_cap_rank > 3 || crypto.market_cap_rank == null} " class="text-amber-700 ">{{crypto.market_cap_rank ? crypto.market_cap_rank + 'º' : 'Unknown'}}</label>
+        </div>
+        <div>Current Price: <label class="text-gray-300 font-normal">{{crypto.current_price | number : '1.2-9'}}
+                $</label></div>
+        <div>24h High: <label class="text-gray-300 font-normal">{{high_24h | number : '1.2-9'}} $</label></div>
+        <div>24h Low: <label class="text-gray-300 font-normal">{{low_24h | number : '1.2-9'}} $</label></div>
+        <div>24h Variation: <label [ngClass]=" { 'text-green-500' : variation24> 0, 'text-red-500' : variation24
+    < 0 } " class="text-gray-300 font-normal">{{variation24 | number : '1.2-2'}} %</label></div>
+        <div>7d Variation: <label [ngClass]=" { 'text-green-500' : variation7d> 0, 'text-red-500' : variation7d
+        < 0 } " class="text-gray-300 font-normal">{{variation7d | number : '1.2-2'}} %</label></div>
+        <div>Market Cap: <label class="text-gray-300 font-normal">{{crypto.market_cap | number}} $</label></div>
+        <div>Total Volume: <label class="text-gray-300 font-normal">{{total_volume | number}} $</label></div>
+        <div>Total Supply: <label class="text-gray-300 font-normal">{{total_supply == null ? '∞' : total_supply |
+                number}}</label></div>
+        <div>Max Supply: <label class="text-gray-300 font-normal">{{max_supply == null ? '∞' : max_supply |
+                number}}</label></div>
+        <div>Circulating Supply: <label class="text-gray-300 font-normal">{{circulating_supply == null ? '∞' :
+                circulating_supply | number}}</label></div>
+        <div>Genesis Date: <label class="text-gray-300 font-normal">{{genesis_date ? genesis_date : 'Unknown'}}</label>
+        </div>
+
     </div>
-    <div class="text-center text-gray-300">Last 45 days:
-        <jqxChart style="max-width: 830px; width: 80%; height: 100%; margin-left: 5%;" [title]="''" [description]="''" [enableAnimations]="true" [showLegend]="false" [padding]="padding" [titlePadding]="titlePadding" [source]="sampleData" [xAxis]="xAxis" [valueAxis]="valueAxis"
-            [seriesGroups]="seriesGroups" [colorScheme]="'scheme03'" [backgroundColor]="backgroundColor" [borderLineColor]="borderLineColor" [showBorderLine]="false" [draggable]="false" [enableCrosshairs]="true">
+    <!-- CHART -->
+    <div class="text-gray-400 ">
+        <div style="width: 100%; max-width: 572px; text-align: center; margin-left: 3%;">
+            Last 45 days:
+        </div>
+        <jqxChart class="animate-pulse hover:animate-none" style="width: 99%; height: 90%; margin-left: 2%; max-width: 572px;" [title]=" '' " [description]=" '' " [enableAnimations]="true " [showLegend]="false " [padding]="padding " [titlePadding]="titlePadding "
+            [source]="sampleData " [xAxis]="xAxis
+            " [valueAxis]="valueAxis " [seriesGroups]="seriesGroups " [colorScheme]=" 'scheme03' " [backgroundColor]="backgroundColor " [borderLineColor]="borderLineColor " [showBorderLine]="false " [draggable]="false " [enableCrosshairs]="true ">
         </jqxChart>
+    </div>
+</div>
+<div class="grid grid-cols-2 w-10/12 mx-auto  mt-20">
+    <div>
+        <h2 class="text-left text-lg text-amber-600 font-semibold mb-3">Description:</h2>
+        <div id="description " [innerHTML]="description " class="text-gray-300 mx-auto text-md"></div>
+    </div>
+    <div class="ml-12">
+        <div class="text-amber-600 cursor-pointer active:animate-spin w-min">
+            <fa-icon [icon]="faArrowsRotate"></fa-icon>
+        </div>
+        <!-- LIKES/DISLIKES BAR -->
+        <div class="ml-12">
+            <div style="width: 100%; min-width: 150px; max-width: 400px;" class="overflow-hidden text-sm text-gray-200 font-normal inline-flex">
+                <div [style.width.%]="likes ">Good ({{likes}}%)</div>
+                <div [style.width.%]="dislikes ">Bad ({{dislikes}}%) </div>
+            </div>
+            <div></div>
+            <div style="display: inline-block; width: 100% ; min-width: 150px; height: 4px; max-width: 400px;" class="overflow-hidden rounded-sm shadow-md">
+                <div [style.width.%]="likes " style="background-color: rgb(0, 189, 0); float: left;">&nbsp;</div>
+                <div [style.width.%]="dislikes " style="background-color: rgb(189, 0, 0); float: right;">&nbsp;</div>
+            </div>
+        </div>
     </div>
 </div>
 
