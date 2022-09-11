@@ -65,7 +65,7 @@
         </tr>
     </div>
     <!-- TABLE TOP 100 -->
-    <div *ngIf="!isLoading" class="table mt-14 rounded-md overflow-hidden mx-auto shadow-2xl">
+    <div *ngIf="!isLoading" class="table mt-14 rounded-md overflow-hidden mx-auto shadow-xl">
         <!-- FILTER AND REFRESH -->
         <tr class="text-amber-600 text-md text-left m-auto relative">
             <th class="pb-2 pl-2">
@@ -91,22 +91,40 @@
         <!-- TABLE HEADERS -->
         <tr class="bg-amber-700">
             <td (click)="orderCoins(); colname='rank'" class="rounded-l-md rounded-b-none hover:bg-amber-600 cursor-pointer">Rank
-                <fa-icon [icon]="faSort" class="text-xs" [ngClass]="{'text-gray-300': colname.localeCompare('rank') == 0}"></fa-icon>
+                <div class="inline-flex ml-1 mb-3">
+                    <fa-icon [icon]="faSortUp" class="text-xs" [ngClass]="{'text-gray-300': colname.localeCompare('rank') == 0 && ordered}" style="position: absolute;"></fa-icon>
+                    <fa-icon [icon]="faSortDown" class="text-xs" [ngClass]="{'text-gray-300': colname.localeCompare('rank') == 0 && !ordered}" style="position: absolute;"></fa-icon>
+                </div>
             </td>
             <td (click)="orderCoins(); colname='symbol'" class="hover:bg-amber-600 cursor-pointer">Symbol
-                <fa-icon [icon]="faSort" class="text-xs" [ngClass]="{'text-gray-300': colname.localeCompare('symbol') == 0}"></fa-icon>
+                <div class="inline-flex ml-1 mb-3">
+                    <fa-icon [icon]="faSortUp" class="text-xs" [ngClass]="{'text-gray-300': colname.localeCompare('symbol') == 0 && ordered}" style="position: absolute;"></fa-icon>
+                    <fa-icon [icon]="faSortDown" class="text-xs" [ngClass]="{'text-gray-300': colname.localeCompare('symbol') == 0 && !ordered}" style="position: absolute;"></fa-icon>
+                </div>
             </td>
             <td (click)="orderCoins(); colname='name'" class="hover:bg-amber-600 cursor-pointer">Name
-                <fa-icon [icon]="faSort" class="text-xs" [ngClass]="{'text-gray-300': colname.localeCompare('name') == 0}"></fa-icon>
+                <div class="inline-flex ml-1 mb-3">
+                    <fa-icon [icon]="faSortUp" class="text-xs" [ngClass]="{'text-gray-300': colname.localeCompare('name') == 0 && ordered}" style="position: absolute;"></fa-icon>
+                    <fa-icon [icon]="faSortDown" class="text-xs" [ngClass]="{'text-gray-300': colname.localeCompare('name') == 0 && !ordered}" style="position: absolute;"></fa-icon>
+                </div>
             </td>
             <td (click)="orderCoins(); colname='price'" class="hover:bg-amber-600 cursor-pointer">Price
-                <fa-icon [icon]="faSort" class="text-xs" [ngClass]="{'text-gray-300': colname.localeCompare('price') == 0}"></fa-icon>
+                <div class="inline-flex ml-1 mb-3">
+                    <fa-icon [icon]="faSortUp" class="text-xs" [ngClass]="{'text-gray-300': colname.localeCompare('price') == 0 && ordered}" style="position: absolute;"></fa-icon>
+                    <fa-icon [icon]="faSortDown" class="text-xs" [ngClass]="{'text-gray-300': colname.localeCompare('price') == 0 && !ordered}" style="position: absolute;"></fa-icon>
+                </div>
             </td>
             <td (click)="orderCoins(); colname='market-cap'" class="hover:bg-amber-600 cursor-pointer">Market Cap
-                <fa-icon [icon]="faSort" class="text-xs" [ngClass]="{'text-gray-300': colname.localeCompare('market-cap') == 0}"></fa-icon>
+                <div class="inline-flex ml-1 mb-3">
+                    <fa-icon [icon]="faSortUp" class="text-xs" [ngClass]="{'text-gray-300': colname.localeCompare('market-cap') == 0 && ordered}" style="position: absolute;"></fa-icon>
+                    <fa-icon [icon]="faSortDown" class="text-xs" [ngClass]="{'text-gray-300': colname.localeCompare('market-cap') == 0 && !ordered}" style="position: absolute;"></fa-icon>
+                </div>
             </td>
             <td (click)="orderCoins(); colname='variation'" class="rounded-r-md rounded-b-none hover:bg-amber-600 cursor-pointer focus:text-white" style="min-width: 123px; border-bottom-right-radius: 0px;">24h Variation
-                <fa-icon [icon]="faSort" class="text-xs" [ngClass]="{'text-gray-300': colname.localeCompare('variation') == 0}"></fa-icon>
+                <div class="inline-flex ml-1 mb-3 mr-4">
+                    <fa-icon [icon]="faSortUp" class="text-xs" [ngClass]="{'text-gray-300': colname.localeCompare('variation') == 0 && ordered}" style="position: absolute;"></fa-icon>
+                    <fa-icon [icon]="faSortDown" class="text-xs" [ngClass]="{'text-gray-300': colname.localeCompare('variation') == 0 && !ordered}" style="position: absolute;"></fa-icon>
+                </div>
             </td>
         </tr>
         <tr *ngFor="let coin of coins | coinsFilter: searchText" class="text-gray-300 hover:bg-gray-700 cursor-pointer max-h-2" routerLink="/crypto-details" [state]="coin">
@@ -127,7 +145,7 @@
             <td style="min-width: 171px">{{coin.market_cap | number}} $</td>
             <!-- 24H VARIATION -->
             <td [ngClass]=" { 'text-green-500' : coin.price_change_percentage_24h_in_currency> 0, 'text-red-500' : coin.price_change_percentage_24h_in_currency
-                < 0 } ">
+                < 0} ">
                 {{coin.price_change_percentage_24h_in_currency | number : '1.2-2'}} %</td>
         </tr>
     </div>

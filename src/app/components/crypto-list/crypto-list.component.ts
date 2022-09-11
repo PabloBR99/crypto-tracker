@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Coin } from 'src/app/models/coin';
-import { faChartLine, faMagnifyingGlass, faRankingStar, faArrowsRotate, faXmark, faFaceFrown, faSort } from '@fortawesome/free-solid-svg-icons';
+import { faChartLine, faMagnifyingGlass, faRankingStar, faArrowsRotate, faXmark, faFaceFrown, faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, delay, retry } from 'rxjs/operators';
@@ -37,7 +37,8 @@ export class CryptoListComponent implements OnInit {
   faArrowsRotate = faArrowsRotate;
   faXmark = faXmark;
   faFaceFrown = faFaceFrown;
-  faSort = faSort;
+  faSortUp = faSortUp;
+  faSortDown = faSortDown;
 
   constructor(private http: HttpClient) { }
 

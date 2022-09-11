@@ -48,3 +48,21 @@
         text-shadow: 0 0 0.1px rgb(252, 181, 116), 0 0 0.5px #fda036, 0 0 1.2px #fd9432, 0 0 1.3px #ffa237, 0 0 2px #fa893e, 0 0 3px #fc922e, 0 0 4px #ffb01d;
     }
 }
+
+.scale {
+    border-bottom: solid 2px rgba(255, 255, 255, 0);
+    outline: none;
+}
+
+
+/* #scale:focus {
+    color: whitesmoke;
+    transition-duration: 0.8s;
+    border-bottom-color: whitesmoke;
+} */
+
+.scale {
+    color: whitesmoke;
+    border-bottom: solid 2px whitesmoke;
+    transition: color 0.7s, border 0s;
+}

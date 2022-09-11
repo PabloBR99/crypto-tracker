@@ -43,6 +43,10 @@ td {
     }
 }
 
+svg.svg-inline--fa.fa-sort-up {
+    height: 2px;
+}
+
 .glow-2 {
     /* color: rgb(255, 208, 0); */
     text-align: center;
