@@ -5,8 +5,9 @@ import { CryptoDetailsComponent } from './components/crypto-details/crypto-detai
 import { CryptoListComponent } from './components/crypto-list/crypto-list.component';
 
 const routes: Routes = [
-  { path: '', component: CryptoListComponent },
-  { path: 'crypto-details', component: CryptoDetailsComponent }
+  { path: 'home', component: CryptoListComponent },
+  { path: 'coin/:coinId', component: CryptoDetailsComponent},
+  { path: '**', redirectTo: 'home'}
 ];
 
 @NgModule({

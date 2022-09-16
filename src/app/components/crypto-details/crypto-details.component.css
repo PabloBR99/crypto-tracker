@@ -52,6 +52,8 @@
 .scale {
     border-bottom: solid 2px rgba(255, 255, 255, 0);
     outline: none;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
 }
 
 
@@ -63,6 +65,40 @@
 
 .scale {
     color: whitesmoke;
-    border-bottom: solid 2px whitesmoke;
-    transition: color 0.7s, border 0s;
+    border-bottom: solid 2px rgba(245, 245, 245, 0.753);
+    background-color: #6363631f;
+    transition: color 0.7s, border 0s, background-color 0.5s;
+}
+
+#scale_btn:hover {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    background-color: #6363630e;
+}
+
+#scale_btn:active {
+    background-color: #63636315;
+}
+
+#follow_twitter {
+    position: relative;
+    background-color: #1DA1F2;
+    /* transform: translate(170px, -7px); */
+    left: 140px;
+    bottom: 5px;
+    border-radius: 5px;
+    padding-top: 5px;
+    box-shadow: 1.2px 2px 4px rgba(0, 0, 0, 0.315);
+}
+
+#follow_twitter:hover {
+    background-color: #3ab3ff;
+}
+
+#follow_twitter:active {
+    transform: scale(0.95);
+}
+
+#twitter_logo:hover {
+    filter: opacity(0.6)
 }

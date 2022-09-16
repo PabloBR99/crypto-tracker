@@ -1,6 +1,6 @@
 <!-- TITLE -->
 <div style="width: 100%; margin: auto">
-    <h1 class="text-5xl antialiased font-sans font-semibold text-center mb-8 mt-14 mx-auto text-amber-700 drop-shadow-xl hover:animate-pulse cursor-default">
+    <h1 class="text-5xl antialiased font-sans font-semibold text-center mb-8 mt-14 mx-auto text-amber-600 drop-shadow-xl hover:animate-pulse cursor-default">
         <fa-icon [icon]="faChartLine" class="animate-bounce"></fa-icon>
         Crypto-Tracker
     </h1>
@@ -48,7 +48,7 @@
             <td>Name</td>
             <td class="rounded-r-md rounded-b-none">Rank</td>
         </tr>
-        <tr *ngFor="let coin of searchedCoins" class="text-gray-300 hover:bg-gray-700 cursor-pointer max-h-2" routerLink="/crypto-details" [state]="coin">
+        <tr *ngFor="let coin of searchedCoins" class="text-gray-300 hover:bg-gray-700 cursor-pointer max-h-2" [routerLink]="['/coin', coin.id]">
             <!-- SYMBOL + LOGO  -->
             <td style="min-width: 200px; width: 210px; padding-inline: 0;">
                 <div style="text-align: left;">
@@ -127,7 +127,7 @@
                 </div>
             </td>
         </tr>
-        <tr *ngFor="let coin of coins | coinsFilter: searchText" class="text-gray-300 hover:bg-gray-700 cursor-pointer max-h-2" routerLink="/crypto-details" [state]="coin">
+        <tr *ngFor="let coin of coins | coinsFilter: searchText" class="text-gray-300 hover:bg-gray-700 cursor-pointer max-h-2" [routerLink]="['/coin', coin.id]">
             <!-- RANK -->
             <td style="min-width: 84px;" [ngClass]="{ 'glow-1 text-amber-300 subpixel-antialiased' : coin.market_cap_rank == 1, 'glow-2 text-stone-400 brightness-95 subpixel-antialiased' : coin.market_cap_rank == 2,  'glow-3 text-amber-600 subpixel-antialiased' : coin.market_cap_rank == 3}">
                 {{coin.market_cap_rank}}º</td>

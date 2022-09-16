@@ -40,11 +40,12 @@
         " [valueAxis]="valueAxis " [seriesGroups]="seriesGroups " [colorScheme]=" 'scheme03' " [backgroundColor]="backgroundColor " [borderLineColor]="borderLineColor " [showBorderLine]="false " [draggable]="false " [enableCrosshairs]="true ">
         </jqxChart>
         <div style="width: 100%; min-width: 571px; max-width: 572px; text-align: center;">
-            <div class="grid grid-cols-4 w-6/12 mx-auto">
-                <button (click)="changeChart('24h')" class="cursor-pointer select-none p-1" [ngClass]="{ 'scale' : scale.localeCompare('24h')==0}">24h</button>
-                <button (click)="changeChart('14d')" class="cursor-pointer select-none p-1" [ngClass]="{ 'scale' : scale.localeCompare('14d')==0}">14d</button>
-                <button (click)="changeChart('30d')" class="cursor-pointer select-none p-1" [ngClass]="{ 'scale' : scale.localeCompare('30d')==0}">30d</button>
-                <button (click)="changeChart('1y')" class="cursor-pointer select-none p-1" [ngClass]="{ 'scale' : scale.localeCompare('1y')==0}">1y</button>
+            <div class="grid grid-cols-5 w-6/12 mx-auto text-md">
+                <button id="scale_btn" (click)="changeChart('24h')" class="cursor-pointer select-none p-1" [ngClass]="{ 'scale' : scale.localeCompare('24h')==0}">24h</button>
+                <button id="scale_btn" (click)="changeChart('7d')" class="cursor-pointer select-none p-1" [ngClass]="{ 'scale' : scale.localeCompare('7d')==0}">7d</button>
+                <button id="scale_btn" (click)="changeChart('14d')" class="cursor-pointer select-none p-1" [ngClass]="{ 'scale' : scale.localeCompare('14d')==0}">14d</button>
+                <button id="scale_btn" (click)="changeChart('30d')" class="cursor-pointer select-none p-1" [ngClass]="{ 'scale' : scale.localeCompare('30d')==0}">30d</button>
+                <button id="scale_btn" (click)="changeChart('1y')" class="cursor-pointer select-none p-1" [ngClass]="{ 'scale' : scale.localeCompare('1y')==0}">1y</button>
             </div>
         </div>
     </div>
@@ -55,16 +56,28 @@
         <h2 class="text-left text-lg text-amber-600 font-semibold mb-3 ">Description:</h2>
         <div id="description " [innerHTML]="description " class="text-gray-300 mx-auto text-md "></div>
     </div>
-    <div class="ml-auto" style="margin-right: 330px">
-
+    <div class="ml-auto" style="margin-right: 280px;">
+        <!-- LINKS -->
+        <div class="inline-flex text-gray-300 w-12/12">
+            <!-- TWITTER -->
+            <a href={{twitter}} target="_blank" style="display: block; width: 24px; position: relative; top:1px" class="mb-4 twitter-follow-button">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Twitter-logo.svg/1200px-Twitter-logo.svg.png" width="24px" id="twitter_logo">
+            </a>
+            <span class="ml-2 text-gray-300 font-semibold">
+                {{ twitter_followers }}
+            </span>
+            <div class="ml-1 font-thin">followers</div>
+            <!-- FOLLOW BUTTON -->
+            <a href="{{follow_twitter}}" target="_blank" class="px-4 text-white" id="follow_twitter">Follow</a>
+        </div>
         <!-- LIKES/DISLIKES BAR -->
-        <div class="mx-auto " style="width: 300%; ">
-            <div style="width: 100%; min-width: 150px; max-width: 400px; " class="overflow-hidden text-sm text-gray-200 font-normal inline-flex ">
+        <div class=" mx-auto mt-8" style="width: 300%;" *ngIf="likes">
+            <div style="width: 100%; min-width: 150px; max-width: 400px; white-space:nowrap; " class="text-sm text-gray-200 font-normal inline-flex ">
                 <div [style.width.%]="likes ">Good ({{likes}}%)</div>
                 <div [style.width.%]="dislikes ">Bad ({{dislikes}}%) </div>
             </div>
             <div></div>
-            <div style="display: inline-block; width: 100% ; min-width: 150px; height: 4px; max-width: 400px; " class="overflow-hidden rounded-sm shadow-md ">
+            <div style="display: inline-block; width: 100% ; min-width: 150px; height: 5px; max-width: 400px; " class="overflow-hidden rounded-sm shadow-md ">
                 <div [style.width.%]="likes " style="background-color: rgb(0, 189, 0); float: left; ">&nbsp;</div>
                 <div [style.width.%]="dislikes " style="background-color: rgb(189, 0, 0); float: right; ">&nbsp;</div>
             </div>
