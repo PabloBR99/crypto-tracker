@@ -11,7 +11,7 @@
         <fa-icon [icon]="faMagnifyingGlass" class="text-amber-600"></fa-icon> Search your favourite Crypto!
     </h2>
     <!-- SEARCH BAR -->
-    <input style="min-width: 300px; max-width: 600px;" [(ngModel)]="searchCoinText" id="search" placeholder="Enter the token's name or symbol" class="px-4 py-2 w-6/12" (keyup.enter)="search()">
+    <input style="min-width: 300px; max-width: 600px;" enterkeyhint="done" [(ngModel)]="searchCoinText" id="search" placeholder="Enter the token's name or symbol" class="px-4 py-2 w-6/12" (keyup.enter)="search()">
     <!-- NO RESULTS -->
     <div *ngIf="notFound" class="text-amber-700 text-center mt-8 w-60 mx-auto">Sorry, No results found
         <fa-icon [icon]="faFaceFrown"></fa-icon>
