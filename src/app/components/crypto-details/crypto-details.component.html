@@ -3,7 +3,7 @@
     <fa-icon [icon]="faArrowLeft">
     </fa-icon>
 </button>
-<div class="relative top-10 right-24 select-none">
+<div class="relative top-10 right-28 select-none">
     <label (click)="flipped = !flipped" class="select-none lb text-right lg:hidden md:hidden inline mx-auto" style="width: 60px; max-width: 60px;">
         <div id="player" class="player mx-auto" [class.voted]="flipped" style="width: 60px; max-width: 60px;">
             <div class="front">
@@ -14,9 +14,8 @@
             </div>
         </div>
     </label>
-
 </div>
-<div class="lg:mx-auto lg:ml-0 ml-28 mx-auto flex lg:mb-20 mb-12 mt-16 mr-28 lg:w-12/12 ml-40" style="justify-content: center; align-items: center;">
+<div class="lg:mx-auto lg:ml-0 ml-30 mx-auto flex lg:mb-20 mb-12 mt-16 mr-28 lg:w-12/12 ml-40" style="justify-content: center; align-items: center;">
     <label (click)="flipped = !flipped" class="lb text-right lg:inline hidden">
         <div id="player" class="player" [class.voted]="flipped">
             <div class="front">
