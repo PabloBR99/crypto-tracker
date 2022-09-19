@@ -1,10 +1,10 @@
 <!-- REFRESH BUTTON -->
-<button [routerLink]="['/home']" class="text-amber-600 hover:text-amber-500 cursor-pointer active:text-amber-100 text-2xl absolute lg:top-12 md:top-12 lg:left-12 md:left-12 top-4 left-4">
+<button [routerLink]="['/home']" class="select-none text-amber-600 hover:text-amber-500 cursor-pointer active:text-amber-100 text-2xl absolute lg:top-12 md:top-12 lg:left-12 md:left-12 top-4 left-4">
     <fa-icon [icon]="faArrowLeft">
     </fa-icon>
 </button>
-<div class="relative top-10 right-24">
-    <label (click)="flipped = !flipped" class="lb text-right lg:hidden md:hidden inline mx-auto" style="width: 60px; max-width: 60px;">
+<div class="relative top-10 right-24 select-none">
+    <label (click)="flipped = !flipped" class="select-none lb text-right lg:hidden md:hidden inline mx-auto" style="width: 60px; max-width: 60px;">
         <div id="player" class="player mx-auto" [class.voted]="flipped" style="width: 60px; max-width: 60px;">
             <div class="front">
                 <img style="width: 60px;" src="{{largeImg}} " alt=" ">
@@ -63,12 +63,12 @@
         </div>
     </div>
     <!-- CHART -->
-    <div class="text-gray-500 lg:ml-auto mr-6 mt-8 xl:w-12/12 lg:w-12/12 md:w-9/12 w-12/12 lg:mb-0 mb-16">
+    <div class="text-gray-500 lg:ml-auto mr-6 mt-8 xl:w-12/12 lg:w-12/12 md:w-9/12 w-12/12 lg:mb-0 mb-16 relative lg:right-0 right-10">
         <jqxChart style="width: 99%; height: 90%; max-width: 572px; height: 357px; min-height: 350px;" [title]=" '' " [description]=" '' " [enableAnimations]="true " [showLegend]="false " [padding]="padding " [titlePadding]="titlePadding " [source]="sampleData "
             [xAxis]="xAxis
         " [valueAxis]="valueAxis " [seriesGroups]="seriesGroups " [colorScheme]=" 'scheme03' " [backgroundColor]="backgroundColor " [borderLineColor]="borderLineColor " [showBorderLine]="false " [draggable]="false " [enableCrosshairs]="true ">
         </jqxChart>
-        <div style="width: 99%; min-width: 320px; max-width: 572px; text-align: center;" class="md:w-10/12 w-7/12">
+        <div style="width: 99%; min-width: 400px; max-width: 572px; text-align: center;" class="md:w-10/12 w-7/12">
             <div class="grid grid-cols-5 w-5/12 text-md" style="width: 50%; margin-inline: auto;">
                 <button id="scale_btn" (click)="changeChart('24h')" class="cursor-pointer select-none p-1" [ngClass]="{ 'scale' : scale.localeCompare('24h')==0}">24h</button>
                 <button id="scale_btn" (click)="changeChart('7d')" class="cursor-pointer select-none p-1" [ngClass]="{ 'scale' : scale.localeCompare('7d')==0}">7d</button>
