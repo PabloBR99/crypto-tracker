@@ -4,7 +4,7 @@ import { jqxChartComponent } from 'jqwidgets-ng/jqxchart';
 import { R3TargetBinder, ThisReceiver } from '@angular/compiler';
 import { Coin } from 'src/app/models/coin';
 import { HttpClient } from '@angular/common/http';
-import { faArrowsRotate } from '@fortawesome/free-solid-svg-icons';
+import { faArrowsRotate, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -14,7 +14,9 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class CryptoDetailsComponent implements OnInit {
 
+  // ICONS
   faArrowsRotate = faArrowsRotate;
+  faArrowLeft = faArrowLeft;
 
   crypto: Coin = {
     id: 'string',
@@ -633,7 +635,7 @@ export class CryptoDetailsComponent implements OnInit {
     const currentDate = new Date();
     const wantedDate = new Date(currentDate.getTime());
     wantedDate.setHours(currentDate.getHours() - hours);
-    return wantedDate.toLocaleTimeString().length == 8 ? wantedDate.toLocaleTimeString().substring(0, 5) : '0' + wantedDate.toLocaleTimeString().substring(0, 4);
+    return wantedDate.toLocaleTimeString().length == 8 ? wantedDate.toLocaleTimeString().substring(0, 5) + 'h' : '0' + wantedDate.toLocaleTimeString().substring(0, 4) + 'h';
   }
 
   ngOnInit(): void {
