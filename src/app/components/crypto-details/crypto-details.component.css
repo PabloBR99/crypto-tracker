@@ -1,3 +1,59 @@
+.lb {
+    -webkit-perspective: 1000px;
+    perspective: 1000px;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    /* display: block; */
+    width: 60px;
+    /* height: 320px; */
+    position: relative;
+    left: 20px;
+    top: -29px;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+}
+
+.player {
+    position: relative;
+    /* height: 100%; */
+    /* width: 100%; */
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-transition: all 600ms;
+    transition: all 600ms;
+    z-index: 20;
+}
+
+.player div {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: #FFF;
+    /* text-align: center; */
+    line-height: 200px;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 50%;
+}
+
+.player img {
+    border-radius: 50%;
+}
+
+.player .back {
+    background: #222;
+    color: #FFF;
+    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+}
+
+.player.voted {
+    transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+}
+
 .glow-1 {
     /* color: rgb(255, 208, 0); */
     text-align: center;
@@ -80,10 +136,14 @@
     background-color: #63636315;
 }
 
+
+/* TWITTER */
+
 #follow_twitter {
     position: relative;
     background-color: #1DA1F2;
     /* transform: translate(170px, -7px); */
+    height: 35px;
     left: 140px;
     bottom: 5px;
     border-radius: 5px;
@@ -92,7 +152,7 @@
 }
 
 #follow_twitter:hover {
-    background-color: #3ab3ff;
+    background-color: #4bbaff;
 }
 
 #follow_twitter:active {
@@ -100,5 +160,89 @@
 }
 
 #twitter_logo:hover {
+    filter: opacity(0.6);
+}
+
+
+/* REDDIT */
+
+#follow_reddit {
+    position: absolute;
+    background-color: #df4a00;
+    height: 35px;
+    min-width: 77.68px;
+    text-align: center;
+    left: 275px;
+    bottom: 113px;
+    border-radius: 5px;
+    padding-top: 5px;
+    box-shadow: 1.2px 2px 4px rgba(0, 0, 0, 0.315);
+}
+
+#follow_reddit:hover {
+    background-color: #ff7834;
+}
+
+#follow_reddit:active {
+    transform: scale(0.95);
+}
+
+#reddit_logo:hover {
+    filter: opacity(0.6)
+}
+
+
+/* GITHUB */
+
+#follow_github {
+    position: relative;
+    background-color: #69469c;
+    height: 35px;
+    min-width: 77.68px;
+    text-align: center;
+    left: 109px;
+    bottom: 5px;
+    border-radius: 5px;
+    padding-top: 5px;
+    box-shadow: 1.2px 2px 4px rgba(0, 0, 0, 0.315);
+}
+
+#follow_github:hover {
+    background-color: #8b72b1;
+}
+
+#follow_github:active {
+    transform: scale(0.95);
+}
+
+#github_logo:hover {
+    filter: opacity(0.6)
+}
+
+
+/* BLOCKCHAIN */
+
+#follow_blockchain {
+    position: relative;
+    background-color: #009b2e;
+    height: 35px;
+    min-width: 77.68px;
+    text-align: center;
+    left: 133px;
+    bottom: 5px;
+    border-radius: 5px;
+    padding-top: 5px;
+    box-shadow: 1.2px 2px 4px rgba(0, 0, 0, 0.315);
+}
+
+#follow_blockchain:hover {
+    background-color: #22bb50;
+}
+
+#follow_blockchain:active {
+    transform: scale(0.95);
+}
+
+#blockchain_logo:hover {
     filter: opacity(0.6)
 }

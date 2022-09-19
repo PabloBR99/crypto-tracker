@@ -27,6 +27,8 @@ export class CryptoDetailsComponent implements OnInit {
     market_cap_rank: 0
   };
 
+  flipped = false;
+
   sampleData: any = [];
   sampleDataCopy: any = [];
 
@@ -51,7 +53,11 @@ export class CryptoDetailsComponent implements OnInit {
   twitter = 'https://twitter.com/';
   follow_twitter = 'https://twitter.com/intent/follow?screen_name='
   twitter_followers = '';
+  reddit = '';
+  reddit_subs = '';
   scale = '24h';
+  github = '';
+  blockchain = '';
 
   padding: any = { left: 20, top: 5, right: 20, bottom: 20 };
 
@@ -660,7 +666,12 @@ export class CryptoDetailsComponent implements OnInit {
       this.follow_twitter += coinById.links.twitter_screen_name;
       let formatter = Intl.NumberFormat('en', { notation: 'compact' });  // 1,000 = 1K, 1,000,000 = 1M ...
       let twitter_followersN = coinById.community_data.twitter_followers;
-      this.twitter_followers = formatter.format(twitter_followersN)
+      this.twitter_followers = formatter.format(twitter_followersN);
+      this.reddit = coinById.links.subreddit_url;
+      let reddit_subsN = coinById.community_data.reddit_subscribers;
+      this.reddit_subs = formatter.format(reddit_subsN);
+      this.github = coinById.links.repos_url.github[0];
+      this.blockchain = coinById.links.blockchain_site[0];
 
       console.log('likes: ' + this.likes)
       // GET LIST OF PRICES

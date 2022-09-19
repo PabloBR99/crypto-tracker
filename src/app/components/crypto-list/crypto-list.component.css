@@ -156,3 +156,20 @@ svg.svg-inline--fa.fa-sort-up {
         height: 32px;
     }
 }
+
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+
+.tabla_1::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* Hide scrollbar for IE, Edge and Firefox */
+
+.tabla_1 {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}

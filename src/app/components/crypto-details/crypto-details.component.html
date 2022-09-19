@@ -1,8 +1,18 @@
-<div class="mx-auto flex mb-16 mt-10 mr-28 w-12/12" style="justify-content: center; align-items: center; min-width: 400px;">
-    <a href="{{homepage}}" target=”_blank” class=" text-right ml-32 hover:animate-spin active:animate-none">
+<div class="lg:mx-auto lg:ml-0 ml-28 mx-auto flex lg:mb-20 mb-12 mt-16 mr-28 lg:w-12/12" style="justify-content: center; align-items: center;">
+    <label (click)="flipped = !flipped" class="lb text-right lg:inline hidden">
+        <div id="player" class="player" [class.voted]="flipped">
+            <div class="front">
+                <img style="width: 60px;" src="{{largeImg}} " alt=" ">
+            </div>
+            <div class="back">
+                <img style="width: 60px; transform: scaleX(-1); -webkit-transform: scaleX(-1);" src="{{largeImg}} " alt=" ">
+            </div>
+        </div>
+    </label>
+    <!-- <a href="{{homepage}}" target=”_blank” class=" text-right ml-32 hover:animate-spin active:animate-none">
         <img style="width: 60px; " src="{{largeImg}} " alt=" ">
-    </a>
-    <a href="{{homepage}}" target=”_blank” style="">
+    </a> -->
+    <a href="{{homepage}}" target=”_blank” style="" class="">
         <h1 class="text-amber-600 text-4xl ml-2 drop-shadow-xl shadow-black font-sans font-semibold pr-4 cursor-pointer w-fit mr-0 active:text-amber-300 hover:text-amber-500 duration-700 ">
             {{crypto.name + ' (' + crypto.symbol.toUpperCase() + ')'}}</h1>
     </a>
@@ -10,7 +20,7 @@
 <div class="w-10/12 mx-auto grid md:grid-cols-2 sm:grid-cols-1" style="min-height: 400px;">
 
     <!-- STATS -->
-    <div class="text-amber-600 font-semibold text-left text-xl mt-10 ml-6" style="max-width: 741px;">
+    <div class="text-amber-600 font-semibold text-left text-xl mt-10 ml-6 mb-8" style="max-width: 741px;">
         <div>Rank: <label [ngClass]=" { 'glow-1 text-amber-300 subpixel-antialiased' : crypto.market_cap_rank==1 , 'glow-2 text-stone-400 brightness-95 subpixel-antialiased' : crypto.market_cap_rank==2 , 'glow-3 text-amber-600 subpixel-antialiased'
     : crypto.market_cap_rank==3, 'text-gray-200 font-normal' : crypto.market_cap_rank > 3 || crypto.market_cap_rank == null}">{{crypto.market_cap_rank
                 ? crypto.market_cap_rank + 'º' : 'Unknown'}}</label>
@@ -35,12 +45,13 @@
         </div>
     </div>
     <!-- CHART -->
-    <div class="text-gray-500 ml-auto mr-6 mt-8">
-        <jqxChart style="width: 99%; height: 90%; max-width: 572px; min-height: 357px;" [title]=" '' " [description]=" '' " [enableAnimations]="true " [showLegend]="false " [padding]="padding " [titlePadding]="titlePadding " [source]="sampleData " [xAxis]="xAxis
+    <div class="text-gray-500 lg:ml-auto mr-6 mt-8 xl:w-12/12 lg:w-12/12 md:w-8/12 w-6/12 lg:mb-0 mb-16">
+        <jqxChart style="width: 99%; height: 90%; max-width: 572px; height: 357px; min-height: 350px;" [title]=" '' " [description]=" '' " [enableAnimations]="true " [showLegend]="false " [padding]="padding " [titlePadding]="titlePadding " [source]="sampleData "
+            [xAxis]="xAxis
         " [valueAxis]="valueAxis " [seriesGroups]="seriesGroups " [colorScheme]=" 'scheme03' " [backgroundColor]="backgroundColor " [borderLineColor]="borderLineColor " [showBorderLine]="false " [draggable]="false " [enableCrosshairs]="true ">
         </jqxChart>
-        <div style="width: 100%; min-width: 571px; max-width: 572px; text-align: center;">
-            <div class="grid grid-cols-5 w-6/12 mx-auto text-md">
+        <div style="width: 100%; min-width: 571px; max-width: 572px; text-align: center;" class="lg:w-12/12 md:w-8/12 w-7/12">
+            <div class="grid grid-cols-5 w-5/12 lg:mx-auto ml-10 text-md">
                 <button id="scale_btn" (click)="changeChart('24h')" class="cursor-pointer select-none p-1" [ngClass]="{ 'scale' : scale.localeCompare('24h')==0}">24h</button>
                 <button id="scale_btn" (click)="changeChart('7d')" class="cursor-pointer select-none p-1" [ngClass]="{ 'scale' : scale.localeCompare('7d')==0}">7d</button>
                 <button id="scale_btn" (click)="changeChart('14d')" class="cursor-pointer select-none p-1" [ngClass]="{ 'scale' : scale.localeCompare('14d')==0}">14d</button>
@@ -51,38 +62,76 @@
     </div>
 
 </div>
-<div class="grid md:grid-cols-2 sm:grid-cols-1 w-10/12 mx-auto mt-20 ">
-    <div class="ml-6 ">
-        <h2 class="text-left text-lg text-amber-600 font-semibold mb-3 ">Description:</h2>
-        <div id="description " [innerHTML]="description " class="text-gray-300 mx-auto text-md "></div>
+<div class="grid md:grid-cols-2 sm:grid-cols-1 lg:w-10/12 md:ml-12 mx-auto lg:mt-28 md:mt-20 sm:mt-12 mb-20">
+    <div class="lg:ml-16 ml-2 mb-10">
+        <h2 class="text-left text-lg text-amber-600 font-semibold mb-3">Description:</h2>
+        <div id="description " [innerHTML]="description " class="text-gray-300 mx-auto text-md lg:ml-0 ml-4"></div>
     </div>
-    <div class="ml-auto" style="margin-right: 280px;">
+    <div class="ml-auto lg:mt-6" style="margin-right: 140px;">
         <!-- LINKS -->
-        <div class="inline-flex text-gray-300 w-12/12">
+        <h2 class="text-left text-lg text-amber-600 font-semibold mb-7 lg:ml-0 ml-2">Links:</h2>
+        <div class="text-gray-300 w-12/12 grid grid-cols-1 relative left-4">
             <!-- TWITTER -->
-            <a href={{twitter}} target="_blank" style="display: block; width: 24px; position: relative; top:1px" class="mb-4 twitter-follow-button">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Twitter-logo.svg/1200px-Twitter-logo.svg.png" width="24px" id="twitter_logo">
-            </a>
-            <span class="ml-2 text-gray-300 font-semibold">
-                {{ twitter_followers }}
-            </span>
-            <div class="ml-1 font-thin">followers</div>
-            <!-- FOLLOW BUTTON -->
-            <a href="{{follow_twitter}}" target="_blank" class="px-4 text-white" id="follow_twitter">Follow</a>
+            <div class="inline-flex">
+                <a href={{twitter}} target="_blank " style="display: block; min-width: 27px; position: relative; top:1px " class="mb-4">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Twitter-logo.svg/1200px-Twitter-logo.svg.png " width="27px " id="twitter_logo">
+                </a>
+                <span class="ml-2 text-gray-300 font-semibold ">
+                    {{ twitter_followers }}
+                </span>
+                <div class="ml-1 font-thin ">followers</div>
+                <!-- FOLLOW BUTTON -->
+                <a href="{{follow_twitter}}" target="_blank" class="px-4 text-white" id="follow_twitter">Follow</a>
+            </div>
+            <!-- REDDIT -->
+            <div class="inline-flex mt-3">
+                <a href={{reddit}} target="_blank " style="display: block; min-width: 27px; position: relative; bottom:1px " class="mb-4">
+                    <img src="https://www.redditinc.com/assets/images/site/reddit-logo.png" width="27px" id="reddit_logo">
+                </a>
+                <span class="ml-2 text-gray-300 font-semibold ">
+                    {{ reddit_subs }}
+                </span>
+                <div class="ml-1 font-thin">subscribers</div>
+                <!-- FOLLOW BUTTON -->
+                <a href="{{reddit}} " target="_blank " class="px-4 text-white" id="follow_reddit">Join</a>
+            </div>
+            <!-- GITHUB -->
+            <div class="inline-flex mt-2">
+                <a href={{github}} target="_blank " style="display: block; min-width: 27px; position: relative; bottom:1px " class="mb-4">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Github-desktop-logo-symbol.svg/1200px-Github-desktop-logo-symbol.svg.png" width="27px" id="github_logo">
+                </a>
+                <span class="ml-2 text-gray-300 font-semibold" style="white-space:nowrap;">
+                    Github Repository
+                </span>
+                <!-- <div class="ml-1 font-thin">Repository</div> -->
+                <!-- FOLLOW BUTTON -->
+                <a href="{{github}} " target="_blank " class="px-4 text-white" id="follow_github">Visit</a>
+            </div>
+            <!-- BLOCKCHAIN SITE -->
+            <div class="inline-flex mt-2">
+                <a href={{blockchain}} target="_blank " style="display: block; min-width: 27px; position: relative; bottom:1px " class="mb-4">
+                    <img src={{largeImg}} width="27px" id="blockchain_logo">
+                </a>
+                <span class="ml-2 text-gray-300 font-semibold" style="white-space:nowrap;">
+                    Blockchain Site
+                </span>
+                <!-- <div class="ml-1 font-thin">Repository</div> -->
+                <!-- FOLLOW BUTTON -->
+                <a href="{{blockchain}} " target="_blank " class="px-4 text-white" id="follow_blockchain">Visit</a>
+            </div>
         </div>
+        <h2 class="text-left text-lg text-amber-600 font-semibold mt-16 lg:ml-0 ml-2">Rating:</h2>
         <!-- LIKES/DISLIKES BAR -->
-        <div class=" mx-auto mt-8" style="width: 300%;" *ngIf="likes">
-            <div style="width: 100%; min-width: 150px; max-width: 400px; white-space:nowrap; " class="text-sm text-gray-200 font-normal inline-flex ">
+        <div class=" mx-auto mt-4 " style="width: 300%; " *ngIf="likes ">
+            <div style="width: 100%; min-width: 100px; max-width: 400px; white-space:nowrap; " class="text-sm text-gray-200 font-normal inline-flex ">
                 <div [style.width.%]="likes ">Good ({{likes}}%)</div>
                 <div [style.width.%]="dislikes ">Bad ({{dislikes}}%) </div>
             </div>
             <div></div>
-            <div style="display: inline-block; width: 100% ; min-width: 150px; height: 5px; max-width: 400px; " class="overflow-hidden rounded-sm shadow-md ">
+            <div style="display: inline-block; width: 100% ; min-width: 100px; height: 5px; max-width: 400px; " class="overflow-hidden rounded-sm shadow-md ">
                 <div [style.width.%]="likes " style="background-color: rgb(0, 189, 0); float: left; ">&nbsp;</div>
                 <div [style.width.%]="dislikes " style="background-color: rgb(189, 0, 0); float: right; ">&nbsp;</div>
             </div>
         </div>
     </div>
 </div>
-
-<!-- FIX CURRENT PRICE SEARCHED COIN -->
